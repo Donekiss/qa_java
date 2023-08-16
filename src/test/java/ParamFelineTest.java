@@ -9,14 +9,13 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
     @RunWith(Parameterized.class)
-    public class ParamTest {
-
+    public class ParamFelineTest {
         private int inputKittens;
         private int expectedKittens;
         private String animalKind;
         private List<String> expectedFood;
 
-        public ParamTest(int inputKittens, int expectedKittens, String animalKind, List<String> expectedFood) {
+        public ParamFelineTest(int inputKittens, int expectedKittens, String animalKind, List<String> expectedFood) {
             this.inputKittens = inputKittens;
             this.expectedKittens = expectedKittens;
             this.animalKind = animalKind;
@@ -26,8 +25,10 @@ import static org.junit.Assert.assertEquals;
         @Parameterized.Parameters
         public static Object[][] testData() {
             return new Object[][]
-                            {{0, 0, "Травоядное", List.of("Трава", "Различные растения")},
-                            {256, 256, "Хищник", List.of("Животные", "Птицы", "Рыба")}};
+                            {
+                            {0, 0, "Травоядное", List.of("Трава", "Различные растения")},
+                            {256, 256, "Хищник", List.of("Животные", "Птицы", "Рыба")}
+                            };
         }
 
         @Test
