@@ -16,10 +16,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Arrays;
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.StrictStubs.class)
 public class LionTest {
     @Mock
-    Lion animalLion;
+    Feline felineMock;
 
     @Before
     public void setUp() {
@@ -28,24 +28,29 @@ public class LionTest {
 
     @Test
     public void testGetKittens() throws Exception {
-        Lion lion = new Lion("Самец");
+        when(felineMock.getKittens()).thenReturn(1);
+
+        Lion lion = new Lion(felineMock);
         int result = lion.getKittens();
         assertEquals(1, result);
     }
 
    @Rule
    public ExpectedException thrown = ExpectedException.none();
+
     @Test
-   public void testLionSexInvalid() throws Exception {
-       thrown.expect(Exception.class);
-       thrown.expectMessage("Используйте допустимые значения пола животного - Самец или Самка");
-       new Lion("InvalidSex");
-   }
+    public void testLionSexInvalid() throws Exception {
+
+        assertThrows(Exception.class, () -> new Lion(felineMock,"InvalidSex"));
+    }
 
     @Test
     public void testEatMeat() throws Exception {
-        Lion lion = new Lion("Самец");
+        when(felineMock.getFood("Хищник")).thenReturn(Arrays.asList("Животные", "Птицы", "Рыба"));
+
+        Lion lion = new Lion(felineMock);
         List<String> foodList = lion.eatMeat();
+
         assertEquals(Arrays.asList("Животные", "Птицы", "Рыба"), foodList);
     }
 
