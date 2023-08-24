@@ -35,9 +35,6 @@ public class LionTest {
         assertEquals(1, result);
     }
 
-   @Rule
-   public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testLionSexInvalid() throws Exception {
 

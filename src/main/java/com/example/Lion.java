@@ -11,6 +11,8 @@ public class Lion{
     private boolean hasMane;
 
     public Lion(Feline feline, String sex) throws Exception {
+        this.feline = feline;
+
         if ("Самец".equals(sex)) {
             hasMane = true;
         } else if ("Самка".equals(sex)) {
